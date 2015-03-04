@@ -1,6 +1,6 @@
 FROM atdocker/debian:latest
 
-ADD ect/init.d/nginx /etc/init.d/nginx
+ADD ./etc/init.d/nginx /etc/init.d/nginx
 
 RUN mkdir -p /root/source/nginx; \
     cd /root/source/nginx; \
