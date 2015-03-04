@@ -27,5 +27,5 @@ RUN mkdir -p /root/source/nginx; \
       --group=www-data; \
     make; \
     make install; \
-    ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx; \
-    rm -rf /root/source/; \
+    ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx; \
+    rm -rf /root/source/;
