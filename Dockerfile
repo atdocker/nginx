@@ -40,4 +40,7 @@ RUN mkdir -p /root/source/nginx; \
       --sbin-path=/usr/sbin/nginx \
       --lock-path=/var/lock/nginx.lock \
       --pid-path=/var/run/nginx.pid; \
+    chmod a+x /etc/init.d/nginx; \
+    mkdir /var/www; \
+    chown www-data:www-data -Rf /var/www; \
     rm -rf /root/source/; \
