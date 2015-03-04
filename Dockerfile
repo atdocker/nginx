@@ -28,4 +28,6 @@ RUN mkdir -p /root/source/nginx; \
     make; \
     make install; \
     ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx; \
-    rm -rf /root/source/;
+    rm -rf /root/source/; \
+    mkdir /var/www; \
+    chown www-data:www-data -Rfv /var/www; \
