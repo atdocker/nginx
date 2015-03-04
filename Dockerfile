@@ -1,17 +1,22 @@
 FROM atdocker/debian:latest
+
 ADD ect/init.d/nginx /etc/init.d/nginx
+
 RUN mkdir -p /root/source/nginx; \
     cd /root/source/nginx; \
-    wget wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
+    wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
     tar zxf nginx-1.7.10.tar.gz; \
     mkdir -p /root/source/nginx/modules; \
     cd /root/source/nginx/modules; \
-    wget wget https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz; \
+    wget https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz; \
     tar zxf 2.3.tar.gz; \
+    wget https://github.com/masterzen/nginx-upload-progress-module/archive/v0.9.1.tar.gz; \
+    tar zxf v0.9.1.tar.gz; \
     cd /root/source/nginx/nginx-1.7.10;
     ./configure \
       --prefix=/usr \
       --add-module=/root/source/nginx/modules/ngx_cache_purge-2.3/ \
+      --add-module=/root/source/nginx/modules/nginx-upload-progress-module-0.9.1 \
       --with-http_addition_module \
       --with-http_auth_request_module \
       --with-http_dav_module \
@@ -44,3 +49,7 @@ RUN mkdir -p /root/source/nginx; \
     mkdir /var/www; \
     chown www-data:www-data -Rf /var/www; \
     rm -rf /root/source/; \
+
+EXPOSE 80 443
+
+CMD ["service", "nginx", "start;"]
