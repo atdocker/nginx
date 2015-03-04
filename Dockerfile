@@ -1,4 +1,4 @@
-FROM andytruong/debian:latest
+FROM atdocker/debian:latest
 
 ADD ect/init.d/nginx /etc/init.d/nginx
 
