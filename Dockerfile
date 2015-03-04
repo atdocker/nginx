@@ -25,4 +25,7 @@ RUN mkdir -p /root/source/nginx; \
       --with-ipv6 \
       --user=www-data \
       --group=www-data; \
+    make; \
+    make install; \
+    ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx; \
     rm -rf /root/source/; \
