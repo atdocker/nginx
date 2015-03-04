@@ -1,7 +1,5 @@
 FROM atdocker/debian:latest
 
-ADD ect/init.d/nginx /etc/init.d/nginx
-
 RUN mkdir -p /root/source/nginx; \
     cd /root/source/nginx; \
     wget wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
@@ -26,12 +24,7 @@ RUN mkdir -p /root/source/nginx; \
       --with-http_mp4_module \
       --with-ipv6 \
       --user=www-data \
-      --group=www-data; \
-    make; \
-    make install; \
-    ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx; \
+      --group=www-data \
+      --sbin-path=/usr/sbin/nginx \
+      --pid-path=/var/run/nginx.pid; \
     rm -rf /root/source/; \
-    chmod a+x /etc/init.d/nginx; \
-    service nginx restart; \
-    mkdir /var/www; \
-    chown www-data:www-data -Rfv /var/www; \
