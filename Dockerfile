@@ -31,5 +31,7 @@ RUN mkdir -p /root/source/nginx; \
     make install; \
     ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx; \
     rm -rf /root/source/; \
+    chmod a+x /etc/init.d/nginx; \
+    service nginx restart; \
     mkdir /var/www; \
     chown www-data:www-data -Rfv /var/www; \
