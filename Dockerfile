@@ -49,6 +49,7 @@ RUN mkdir -p /root/source/nginx; \
     mkdir /var/www; \
     chown www-data:www-data -Rf /var/www; \
     rm -rf /root/source/; \
+    chmod a+x /etc/init.d/nginx;
 
 EXPOSE 80 443
 
