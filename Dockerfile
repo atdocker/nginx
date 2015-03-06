@@ -15,7 +15,7 @@ RUN mkdir -p /opt/nginx/source; \
     wget https://github.com/masterzen/nginx-upload-progress-module/archive/v0.9.1.tar.gz; \
     tar zxf v0.9.1.tar.gz; \
     rm *.gz; \
-    cd /opt/nginx/source/nginx;
+    cd /opt/nginx/source/nginx; \
     ./configure \
       --prefix=/usr \
       --add-module=/opt/nginx/source/modules/ngx_cache_purge-2.3 \
