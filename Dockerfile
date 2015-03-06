@@ -2,21 +2,24 @@ FROM atdocker/debian:latest
 
 ADD ./etc/init.d/nginx /etc/init.d/nginx
 
-RUN mkdir -p /root/source/nginx; \
-    cd /root/source/nginx; \
+RUN mkdir -p /opt/nginx/source; \
+    cd /opt/nginx/source; \
     wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
     tar zxf nginx-1.7.10.tar.gz; \
-    mkdir -p /root/source/nginx/modules; \
-    cd /root/source/nginx/modules; \
+    rm nginx-1.7.10.tar.gz; \
+    mv nginx-1.7.10 nginx;
+    mkdir /opt/nginx/source/modules; \
+    cd /opt/nginx/source/modules; \
     wget https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz; \
     tar zxf 2.3.tar.gz; \
     wget https://github.com/masterzen/nginx-upload-progress-module/archive/v0.9.1.tar.gz; \
     tar zxf v0.9.1.tar.gz; \
-    cd /root/source/nginx/nginx-1.7.10;
+    rm *.gz; \
+    cd /opt/nginx/source/nginx;
     ./configure \
       --prefix=/usr \
-      --add-module=/root/source/nginx/modules/ngx_cache_purge-2.3/ \
-      --add-module=/root/source/nginx/modules/nginx-upload-progress-module-0.9.1 \
+      --add-module=/opt/nginx/source/modules/ngx_cache_purge-2.3 \
+      --add-module=/opt/nginx/source/modules/nginx-upload-progress-module-0.9.1 \
       --with-http_addition_module \
       --with-http_auth_request_module \
       --with-http_dav_module \
@@ -45,6 +48,7 @@ RUN mkdir -p /root/source/nginx; \
       --sbin-path=/usr/sbin/nginx \
       --lock-path=/var/lock/nginx.lock \
       --pid-path=/var/run/nginx.pid; \
+    make && make install; \
     chmod a+x /etc/init.d/nginx; \
     mkdir /var/www; \
     chown www-data:www-data -Rf /var/www; \
