@@ -7,7 +7,7 @@ RUN mkdir -p /opt/nginx/source; \
     wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
     tar zxf nginx-1.7.10.tar.gz; \
     rm nginx-1.7.10.tar.gz; \
-    mv nginx-1.7.10 nginx;
+    mv nginx-1.7.10 nginx; \
     mkdir /opt/nginx/source/modules; \
     cd /opt/nginx/source/modules; \
     wget https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz; \
@@ -57,4 +57,4 @@ RUN mkdir -p /opt/nginx/source; \
 
 EXPOSE 80 443
 
-CMD ["service", "nginx", "start;"]
+CMD ["service", "nginx", "start"]
