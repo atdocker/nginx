@@ -1,6 +1,7 @@
 FROM atdocker/debian:latest
 
-ADD ./etc/init.d/nginx /etc/init.d/nginx
+ADD ./etc/init.d/nginx        /etc/init.d/nginx
+ADD ./supervisord-nginx.conf  /etc/supervisor/conf.d
 
 RUN mkdir -p /opt/nginx/source; \
     cd /opt/nginx/source; \
@@ -57,4 +58,4 @@ RUN mkdir -p /opt/nginx/source; \
 
 EXPOSE 80 443
 
-CMD ["service", "nginx", "start"]
+CMD exec supervisord -n
