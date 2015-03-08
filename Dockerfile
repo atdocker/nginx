@@ -1,7 +1,7 @@
 FROM atdocker/debian:latest
 
-ADD ./etc/init.d/nginx        /etc/init.d/nginx
-ADD ./supervisord-nginx.conf  /etc/supervisor/conf.d
+ADD ./etc/init.d/nginx                             /etc/init.d/nginx
+ADD ./etc/supervisor/conf.d/supervisord-nginx.conf /etc/supervisor/conf.d/supervisord-nginx.conf
 
 RUN mkdir -p /opt/nginx/source; \
     cd /opt/nginx/source; \
