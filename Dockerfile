@@ -54,9 +54,14 @@ RUN mkdir -p /opt/nginx/source; \
     mkdir /var/www; \
     chown www-data:www-data -Rf /var/www; \
     rm -rf /opt/nginx/source/; \
-    chmod a+x /etc/init.d/nginx;
+    chmod a+x /etc/init.d/nginx; \
+    mkdir -p /etc/nginx/includes; \
+    mkdir -p /etc/nginx/sites-available; \
+    mkdir -p /etc/nginx/sites-enabled;
 
-COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./etc/nginx/nginx.conf  /etc/nginx/nginx.conf
+COPY ./etc/nginx/conf.d/*    /etc/nginx/conf.d/
+COPY ./etc/nginx/includes/*  /etc/nginx/includes/
+
 EXPOSE 80 443
-
 CMD exec supervisord -n
