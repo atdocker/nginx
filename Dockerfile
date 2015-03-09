@@ -56,6 +56,7 @@ RUN mkdir -p /opt/nginx/source; \
     rm -rf /opt/nginx/source/; \
     chmod a+x /etc/init.d/nginx;
 
+COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80 443
 
 CMD exec supervisord -n
