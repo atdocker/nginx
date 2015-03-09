@@ -1,8 +1,5 @@
 FROM atdocker/debian:latest
 
-ADD ./etc/init.d/nginx                             /etc/init.d/nginx
-ADD ./etc/supervisor/conf.d/supervisord-nginx.conf /etc/supervisor/conf.d/supervisord-nginx.conf
-
 RUN mkdir -p /opt/nginx/source; \
     cd /opt/nginx/source; \
     wget http://nginx.org/download/nginx-1.7.10.tar.gz; \
@@ -59,9 +56,11 @@ RUN mkdir -p /opt/nginx/source; \
     mkdir -p /etc/nginx/sites-available; \
     mkdir -p /etc/nginx/sites-enabled;
 
-COPY ./etc/nginx/nginx.conf  /etc/nginx/nginx.conf
-COPY ./etc/nginx/conf.d/*    /etc/nginx/conf.d/
-COPY ./etc/nginx/includes/*  /etc/nginx/includes/
+ADD  ./etc/init.d/nginx        /etc/init.d/nginx
+COPY ./etc/nginx/nginx.conf    /etc/nginx/nginx.conf
+COPY ./etc/nginx/conf.d/*      /etc/nginx/conf.d/
+COPY ./etc/nginx/includes/*    /etc/nginx/includes/
+COPY ./etc/supervisor/conf.d/* /etc/supervisor/conf.d/
 
 EXPOSE 80 443
 CMD exec supervisord -n
