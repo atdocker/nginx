@@ -52,6 +52,7 @@ RUN mkdir -p /opt/nginx/source; \
     chown www-data:www-data -Rf /var/www; \
     rm -rf /opt/nginx/source/; \
     chmod a+x /etc/init.d/nginx; \
+    mkdir -p /var/lib/nginx/speed; \
     mkdir -p /etc/nginx/includes; \
     mkdir -p /etc/nginx/sites-available; \
     mkdir -p /etc/nginx/sites-enabled;
